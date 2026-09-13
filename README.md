@@ -12,10 +12,11 @@ It is built for small, focused work: proofs of concept, internal tools, customer
    cp docs/templates/README.md README.md
    rm -r docs/templates
    ```
-3. Work through the setup checklist at the bottom of that new README
-4. In the new repo's **Settings**, enable Dependabot and add a ruleset on `main`
+3. Fill out `engagement/01-intake.md` before writing any code. It's the one that stops "I thought this was also going to do X" six weeks later.
+4. Work through the setup checklist at the bottom of that new README
+5. In the new repo's **Settings**, enable Dependabot and add a ruleset on `main`
 
-Step 4 catches people out. GitHub's template feature copies *files*, not *settings* — branch protection, Dependabot, and merge rules do not come along, and a repo without them is a repo where nothing stops you.
+Step 5 catches people out. GitHub's template feature copies *files*, not *settings* — branch protection, Dependabot, and merge rules do not come along, and a repo without them is a repo where nothing stops you.
 
 ## What's in here
 
@@ -26,6 +27,7 @@ Step 4 catches people out. GitHub's template feature copies *files*, not *settin
 | `.github/dependabot.yml` | Weekly dependency updates, grouped, with a low PR limit. | Dependabot |
 | `AGENTS.md` | Working agreement and definition of done for coding agents. | Claude, Kiro, any agent |
 | `.kiro/steering/` | Code standards, repo structure rules, and per-project tech constraints. | agents, you |
+| `engagement/` | Intake, discovery, scope, and handoff. The thinking behind the project, in four files, each ending with an interview prompt for an AI assistant. | you, the customer, whoever inherits it |
 | `docs/decisions/` | Architecture decision records. Numbered, immutable, short. | whoever inherits this |
 | `.github/pull_request_template.md` | Forces every PR to state why, how to verify, and what the risk is. | reviewers |
 | `.github/ISSUE_TEMPLATE/task.md` | Forces every task to state acceptance criteria and what is out of scope. | you |
