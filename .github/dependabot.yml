@@ -1,0 +1,65 @@
+version: 2
+
+# Dependabot version updates.
+#
+# Alerts (configured in repo settings) tell you when a dependency has a KNOWN
+# vulnerability. This file is the separate feature that keeps dependencies
+# current, so you hit fewer of those in the first place.
+
+updates:
+  # Listed first on purpose. Workflow actions are pinned to mutable tags like
+  # @v4, they go stale silently, and they execute with repository credentials.
+  # It is the ecosystem people forget and the one with the nastiest blast radius.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore"
+    groups:
+      actions-minor-patch:
+        update-types: ["minor", "patch"]
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore"
+      include: "scope"
+    groups:
+      npm-minor-patch:
+        update-types: ["minor", "patch"]
+
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "chore"
+    groups:
+      pip-minor-patch:
+        update-types: ["minor", "patch"]
+
+# Why these choices, so future-you does not re-derive them:
+#
+# weekly, not daily     daily updates on a small project are noise, and noise
+#                       trains you to close the tab without reading.
+# limit 3               default is 5 per ecosystem. Three ecosystems x 5 = 15
+#                       open PRs on a repo nobody is watching. Three survives.
+# minor+patch grouped   one PR per ecosystem instead of one per package. Major
+#                       versions stay UNGROUPED on purpose: those are breaking
+#                       changes and each deserves to be looked at alone.
+# prefix chore          matches the conventional-commit rule in AGENTS.md. The
+#                       bot follows the same standards as everyone else.
+# npm and pip listed    neither manifest exists in this template yet. Dependabot
+#   before they exist   skips an ecosystem with no manifest rather than erroring,
+#                       so a repo generated from this template is covered on day
+#                       one without anyone remembering to add it. That is the
+#                       entire point of a template.
