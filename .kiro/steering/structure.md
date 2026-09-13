@@ -7,6 +7,7 @@
 │   ├── ISSUE_TEMPLATE/task.md
 │   └── pull_request_template.md
 ├── .kiro/steering/                 # standards agents must follow
+├── engagement/                     # the thinking: intake, discovery, scope, handoff
 ├── docs/
 │   └── decisions/                  # ADRs, numbered, immutable
 ├── scripts/check.sh                # the single health command
@@ -20,6 +21,9 @@
 
 ## Rules
 
+- `engagement/` holds the reasoning, `src/` holds the result. Decisions that
+  constrain future code go in `docs/decisions/` as ADRs; the engagement files
+  are about the project, not the architecture.
 - `src/` holds code. `tests/` holds tests. Don't interleave them.
 - Infrastructure as code, when present, goes in `infra/`.
 - **One README.** Not `README.md` plus `SETUP.md` plus `NOTES.md` plus `GETTING_STARTED.md`. Documentation sprawl is how documentation stops being read.
